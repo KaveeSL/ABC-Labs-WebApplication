@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/animations.css">  
+    <link rel="stylesheet" href="css/main.css">  
+    <link rel="stylesheet" href="css/index.css">
+    <link rel="stylesheet" href="css\footer.css">
+    <title>ABC LABS</title>
+    <style>
+        table{
+            animation: transitionIn-Y-bottom 0.5s;
+        }
+    </style>
+        
+</head>
+<body>
+    
+    <div class="full-height">
+        <center>
+        <table border="0">
+            <tr>
+                <td  colspan="3">
+                    <p class="heading-text"><span style="color: #006DD3;">ABC</span> <br>LABORATORIES</p>
+
+
+
+                </td>
+            </tr>
+            
+            <tr>
+              
+                <td  colspan="3">
+                    <p class="sub-text2">Book medical tests easily online<br>
+                         Register, schedule appointments, access reports, and pay securely<br> Your simple healthcare solution</p>
+                </td>
+            </tr>
+            <tr>
+                
+                <td colspan="3">
+                    <center>
+                        <a href="login.php">
+                            <input type="button" value="Make Appointment Now" class="login-btn btn-primary btn" style="padding-left: 40px; padding-right: 40px; padding-top: 15px; padding-bottom: 15px; border-radius: 0; font-size: 16px;">
+                        </a>
+                        
+                </center>
+                </td>
+                
+            </tr>
+            <tr>
+                <td colspan="3">
+                   
+                </td>
+            </tr>
+        </table>
+        <p class="sub-text2 footer" style="position: absolute; bottom: 0; left: 0; right: 0; margin: auto; text-align: center; font-size: 13px; animation: transitionIn-Y-over 0.5s;">© ABC LABS 2024. All Rights Reserved</p>
+</center>
+    
+    </div>
+
+
+    <footer id="picassoFooter">
+        <div class="footer-navigation">
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+        <div class="footer-contact">
+            <p>Email Us: abc@labspvtltd.com</p>
+            <p>Call Us: 045 456 7890</p>
+        </div>
+        <div class="footer-social">
+            <h3>Follow Us</h3>
+            <div class="social-icons">
+                <a href="https://facebook.com" target="_blank" class="social-icon">FB</a>
+                <a href="https://twitter.com" target="_blank" class="social-icon">TW</a>
+                <a href="https://instagram.com" target="_blank" class="social-icon">IG</a>
+            </div>
+        </div>
+        <div class="footer-art">
+            <canvas id="picassoCanvas"></canvas>
+        </div>
+    </footer>
+
+<!--footer ABC LABS text-->
+    <script>
+        window.onload = function() {
+            var canvas = document.getElementById('picassoCanvas');
+            if (canvas.getContext) {
+                var ctx = canvas.getContext('2d');
+    
+                // Set canvas size
+                canvas.width = 200;
+                canvas.height = 200;
+    
+                // Add text "ABC LABS" in white color and bold
+                ctx.fillStyle = "#FFFFFF";
+                ctx.font = "bold 30px Arial";
+                ctx.textAlign = "center";
+                ctx.textBaseline = "middle";
+                ctx.fillText("| ABC LABS |", 100, 100);
+            }
+        };
+    </script>
+    
+
+</body>
+</html>
