@@ -413,6 +413,46 @@
 
 ?>
 </div>
+<footer id="picassoFooter" style="background-color: #006DD3; color: #ffffff; padding: 20px; display: flex; flex-wrap: wrap; justify-content: space-around; align-items: center; font-family: 'Arial', sans-serif;">
+  
+    </div>
+    <div class="footer-contact" style="margin: 10px;">
+        <h3 style="color: #f0f0f0; margin-bottom: 15px;">Contact</h3>
+        <p>Email Us: abc@labspvtltd.com</p>
+        <p>Call Us: 045 456 7890</p>
+    </div>
+    <div class="footer-social" style="margin: 10px;">
+        <h3 style="color: #f0f0f0; margin-bottom: 15px;">Follow Us</h3>
+        <div class="social-icons" style="list-style: none; padding: 0;">
+            <a href="https://facebook.com" target="_blank" class="social-icon" style="color: #ffffff; text-decoration: none; display: inline-block; padding: 8px; background-color: #004585; margin-right: 5px;">FB</a>
+            <a href="https://twitter.com" target="_blank" class="social-icon" style="color: #ffffff; text-decoration: none; display: inline-block; padding: 8px; background-color: #004585; margin-right: 5px;">TW</a>
+            <a href="https://instagram.com" target="_blank" class="social-icon" style="color: #ffffff; text-decoration: none; display: inline-block; padding: 8px; background-color: #004585; margin-right: 5px;">IG</a>
+        </div>
+    </div>
+    <div class="footer-art" style="margin: 10px;">
+        <canvas id="picassoCanvas" style="max-width: 100px; height: auto; margin-top: 20px;"></canvas>
+    </div>
 
+
+    <script>
+        window.onload = function() {
+            var canvas = document.getElementById('picassoCanvas');
+            if (canvas.getContext) {
+                var ctx = canvas.getContext('2d');
+    
+                // Set canvas size
+                canvas.width = 200;
+                canvas.height = 200;
+    
+                // Add text "ABC LABS" in white color and bold
+                ctx.fillStyle = "#FFFFFF";
+                ctx.font = "bold 30px Arial";
+                ctx.textAlign = "center";
+                ctx.textBaseline = "middle";
+                ctx.fillText("| ABC LABS |", 100, 100);
+            }
+        };
+    </script>
+</footer>
 </body>
 </html>

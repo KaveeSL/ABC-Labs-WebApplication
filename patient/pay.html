@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>ABC LABS</title>
+    
+    
+    
+    <style>
+       @import url('https://fonts.googleapis.com/css?family=Baloo+Bhaijaan|Ubuntu');
+       
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Ubuntu', sans-serif;
+}
+
+body{
+    background-image: url(../img/bgindex.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    height: 100%;
+}
+
+.payment{
+  background: #f8f8f8;
+  max-width: 360px;
+  margin: 80px auto;
+  height: auto;
+  padding: 35px;
+  padding-top: 70px;
+  border-radius: 5px;
+  position: relative;
+}
+
+.payment h2{
+  text-align: center;
+  letter-spacing: 2px;
+  margin-bottom: 40px;
+  color: #0d3c61;
+}
+
+.form .label{
+  display: block;
+  color: #555555;
+  margin-bottom: 6px;
+}
+
+.input{
+  padding: 13px 0px 13px 25px;
+  width: 100%;
+  text-align: center;
+  border: 2px solid #dddddd;
+  border-radius: 5px;
+  letter-spacing: 1px;
+  word-spacing: 3px;
+  outline: none;
+  font-size: 16px;
+  color: #555555;
+}
+
+.card-grp{
+  display: flex;
+  justify-content: space-between;
+}
+
+.card-item{
+  width: 48%;
+}
+
+.space{
+  margin-bottom: 20px;
+}
+
+.icon-relative{
+  position: relative;
+}
+
+.icon-relative .fas,
+.icon-relative .far{
+  position: absolute;
+  bottom: 12px;
+  left: 15px;
+  font-size: 20px;
+  color: #555555;
+}
+
+.btn{
+  margin-top: 40px;
+  background: #2196F3;
+  padding: 12px;
+  text-align: center;
+  color: #f8f8f8;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+
+.payment-logo{
+  position: absolute;
+  top: -50px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 100px;
+  background: #f8f8f8;
+  border-radius: 50%;
+  box-shadow: 0 0 5px rgba(0,0,0,0.2);
+  text-align: center;
+  line-height: 85px;
+}
+
+.payment-logo:before{
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 90px;
+  height: 90px;
+  background: #2196F3;
+  border-radius: 50%;
+}
+
+.payment-logo p{
+  position: relative;
+  color: #f8f8f8;
+  font-family: 'Baloo Bhaijaan', cursive;
+  font-size: 58px;
+}
+
+
+@media screen and (max-width: 420px){
+  .card-grp{
+    flex-direction: column;
+  }
+  .card-item{
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  .btn{
+    margin-top: 20px;
+  }
+}
+    </style>
+        
+</head>
+
+<body>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css">
+
+<div class="wrapper">
+  <div class="payment">
+    <div class="">
+     
+    </div>
+    
+    
+    <h2>Make Your Payment before come to <br>ABC Labs</h2>
+<h3>Channeling fee : <b><font color="red">LKR. 2 000.00</font></b></h3><br>
+
+<div class="form" id="paymentForm">
+  <div class="card space icon-relative">
+    <label class="label">Card holder:</label>
+    <input type="text" id="cardHolder" class="input" placeholder="Card holder" required>
+    <i class="fas fa-user"></i>
+  </div>
+  <div class="card space icon-relative">
+    <label class="label">Card number:</label>
+    <input type="text" id="cardNumber" class="input" data-mask="0000 0000 0000 0000" placeholder="Card Number" required>
+    <i class="far fa-credit-card"></i>
+  </div>
+  <div class="card-grp space">
+    <div class="card-item icon-relative">
+      <label class="label">Expiry date:</label>
+      <input type="text" id="expiryDate" name="expiry-data" class="input" placeholder="00 / 00" required>
+      <i class="far fa-calendar-alt"></i>
+    </div>
+    <div class="card-item icon-relative">
+      <label class="label">CVC:</label>
+      <input type="text" id="cvc" class="input" data-mask="000" placeholder="000" required>
+      <i class="fas fa-lock"></i>
+    </div>
+  </div>
+
+  <!-- HTML code for the Pay button -->
+  <div id="payButton" class="btn">
+    Pay
+  </div>
+</div>
+
+<!-- JavaScript code to handle the Pay button click event and display Swal confirmation dialog -->
+<script>
+  document.getElementById("payButton").addEventListener("click", function() {
+    // Validate the form
+    var cardHolder = document.getElementById("cardHolder").value;
+    var cardNumber = document.getElementById("cardNumber").value;
+    var expiryDate = document.getElementById("expiryDate").value;
+    var cvc = document.getElementById("cvc").value;
+
+    if (cardHolder.trim() === '' || cardNumber.trim() === '' || expiryDate.trim() === '' || cvc.trim() === '') {
+      // If any of the required fields are empty, display an error message
+      Swal.fire({
+        title: "Incomplete Form",
+        text: "Please fill out all required fields before proceeding.",
+        icon: "error"
+      });
+      return; // Prevent further execution
+    }
+
+    // Display SweetAlert confirmation dialog
+    Swal.fire({
+      title: "Channeling fee :LKR.2 000.00",
+      text: "Do you want to PayNow!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, proceed!"
+    }).then((result) => {
+      // Handle user's choice
+      if (result.isConfirmed) {
+        // Display success message
+        Swal.fire({
+          title: "Payment Successful!",
+          text: "Please bring your payment reference code with you.",
+          icon: "success"
+        });
+
+        // Here you can add additional code to proceed with the payment process
+      }
+    });
+  });
+// Input masking function
+function maskInput(input, mask) {
+    input.addEventListener("input", function(event) {
+        var value = input.value.replace(/\D/g, ''); // Remove non-numeric characters
+        var maskedValue = '';
+        var j = 0;
+
+        for (var i = 0; i < mask.length; i++) {
+            if (mask[i] === '0') {
+                if (j < value.length) {
+                    maskedValue += value[j++];
+                } else {
+                    break;
+                }
+            } else {
+                maskedValue += mask[i];
+            }
+        }
+
+        input.value = maskedValue;
+    });
+}
+
+// Initialize input masking for card number and expiry date
+var cardNumberInput = document.getElementById("cardNumber");
+maskInput(cardNumberInput, "0000 0000 0000 0000");
+
+var expiryDateInput = document.getElementById("expiryDate");
+maskInput(expiryDateInput, "00 / 00");
+
+// Initialize input masking for CVV
+var cvvInput = document.getElementById("cvc");
+maskInput(cvvInput, "000"); // Assuming CVV has 3 digits
+
+</script>
+
+
+
+      
+    </div>
+  </div>
+</div>
+
+
+<script>$("input[name='expiry-data']").mask("00 / 00");</script>
+
+
+<footer id="picassoFooter" style="background-color: #006DD3; color: #ffffff; padding: 20px; display: flex; flex-wrap: wrap; justify-content: space-around; align-items: center; font-family: 'Arial', sans-serif;">
+  
+</div>
+<div class="footer-contact" style="margin: 10px;">
+    <h3 style="color: #f0f0f0; margin-bottom: 15px;">Contact</h3>
+    <p>Email Us: abc@labspvtltd.com</p>
+    <p>Call Us: 045 456 7890</p>
+</div>
+<div class="footer-social" style="margin: 10px;">
+    <h3 style="color: #f0f0f0; margin-bottom: 15px;">Follow Us</h3>
+    <div class="social-icons" style="list-style: none; padding: 0;">
+        <a href="https://facebook.com" target="_blank" class="social-icon" style="color: #ffffff; text-decoration: none; display: inline-block; padding: 8px; background-color: #004585; margin-right: 5px;">FB</a>
+        <a href="https://twitter.com" target="_blank" class="social-icon" style="color: #ffffff; text-decoration: none; display: inline-block; padding: 8px; background-color: #004585; margin-right: 5px;">TW</a>
+        <a href="https://instagram.com" target="_blank" class="social-icon" style="color: #ffffff; text-decoration: none; display: inline-block; padding: 8px; background-color: #004585; margin-right: 5px;">IG</a>
+    </div>
+</div>
+<div class="footer-art" style="margin: 10px;">
+    <canvas id="picassoCanvas" style="max-width: 100px; height: auto; margin-top: 20px;"></canvas>
+</div>
+
+
+<script>
+    window.onload = function() {
+        var canvas = document.getElementById('picassoCanvas');
+        if (canvas.getContext) {
+            var ctx = canvas.getContext('2d');
+
+            // Set canvas size
+            canvas.width = 200;
+            canvas.height = 200;
+
+            // Add text "ABC LABS" in white color and bold
+            ctx.fillStyle = "#FFFFFF";
+            ctx.font = "bold 30px Arial";
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+            ctx.fillText("| ABC LABS |", 100, 100);
+        }
+    };
+</script>
+</footer>
+</body>
+
+
+
+</html>
