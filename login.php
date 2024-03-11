@@ -200,9 +200,9 @@
             </ul>
         </div>
         <div class="footer-contact">
-            <p>Email Us: abc@labspvtltd.com</p>
-            <p>Call Us: 045 456 7890</p>
-        </div>
+        <p>Email Us:</p> <a href="email.html">abc.labspvtltd@gmail.com</a>
+        <p>Call Us: 045 456 7890</p>
+    </div>
         <div class="footer-social">
             <h3>Follow Us</h3>
             <div class="social-icons">

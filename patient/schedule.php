@@ -265,7 +265,7 @@ if (!$result) {
   </div>
   <div class="footer-contact" style="margin: 10px;">
       <h3 style="color: #f0f0f0; margin-bottom: 15px;">Contact</h3>
-      <p>Email Us: abc@labspvtltd.com</p>
+      <p>Email Us: abc.labspvtltd@gmail.com</p>
       <p>Call Us: 045 456 7890</p>
   </div>
   <div class="footer-social" style="margin: 10px;">

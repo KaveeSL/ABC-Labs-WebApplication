@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Contact</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css\footer.css">
+  
+</head>
+
+<style>
+
+    form {
+        background-color: #c7e2fe;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="message"],
+    button[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+        background-color: white; /* Set background color to white */
+    }
+
+    button[type="submit"] {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+
+    button[type="submit"]:hover {
+        background-color: #0056b3;
+    }
+
+    label{
+        color: rgb(0, 0, 0);
+    }
+</style>
+</head>
+<body>
+<center>
+    <h1>Email Us Now</h1><br>
+    
+    <form action="https://formsubmit.co/abc.labspvtltd@gmail.com" method="POST"><br><br>
+
+        <input type="text" name="name" placeholder="Enter your name..." required >
+        <br><br>
+        <input type="email" name="email" placeholder="Enter your E-Mail..." required>
+        <br><br>
+        <input type="message" name="message" placeholder="Enter your message..." required></b>
+    <br><br>
+        <button type="submit">Send</button>
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+        
+   </form>
+</center>
+
+<br><br><br><br><br><br>
+<footer id="picassoFooter">
+    <div class="footer-navigation">
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </div>
+    <div class="footer-contact">
+        <p>Email Us:</p> <a href="email.html">abc.labspvtltd@gmail.com</a>
+        <p>Call Us: 045 456 7890</p>
+    </div>
+    <div class="footer-social">
+        <h3>Follow Us</h3>
+        <div class="social-icons">
+            <a href="https://facebook.com" target="_blank" class="social-icon">FB</a>
+            <a href="https://twitter.com" target="_blank" class="social-icon">TW</a>
+            <a href="https://instagram.com" target="_blank" class="social-icon">IG</a>
+        </div>
+    </div>
+    <div class="footer-art">
+        <canvas id="picassoCanvas"></canvas>
+    </div>
+</footer>
+
+<!--footer ABC LABS text-->
+<script>
+    window.onload = function() {
+        var canvas = document.getElementById('picassoCanvas');
+        if (canvas.getContext) {
+            var ctx = canvas.getContext('2d');
+
+            // Set canvas size
+            canvas.width = 200;
+            canvas.height = 200;
+
+            // Add text "ABC LABS" in white color and bold
+            ctx.fillStyle = "#FFFFFF";
+            ctx.font = "bold 30px Arial";
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+            ctx.fillText("| ABC LABS |", 100, 100);
+        }
+    };
+</script>
+</body>
+</html>
