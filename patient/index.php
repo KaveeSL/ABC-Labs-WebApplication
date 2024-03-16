@@ -145,13 +145,6 @@
                     <td colspan="4" >
                         
                     <center>
-                    <table class="filter-container doctor-header patient-header" style="border: none;width:95%" border="0" >
-                    <tr>
-                        <td >
-                            <h3>Welcome !</h3>
-                            <h1><?php echo $username  ?>.</h1>
-                            <p>Welcome to your personalized patient dashboard.<br> This platform provides you with easy access to manage your medical appointments and stay informed about your healthcare journey.
-</P>
 
                             
                                 <?php
@@ -198,6 +191,33 @@
                                                 </td>
                                             </tr>
                                             <tr>
+
+                                            <h3 style="font-size: 1.5em; color: #333; margin-bottom: 10px;">Downloadable Report Files</h3>
+
+                                            <?php
+                                            // Retrieve files associated with the patient from the database
+                                            $stmt = $database->prepare("SELECT id, filename FROM files WHERE pid = ?");
+                                            $stmt->bind_param("i", $userid);
+                                            $stmt->execute();
+                                            $fileResult = $stmt->get_result();
+
+                                            if ($fileResult && $fileResult->num_rows > 0) {
+                                                // Output download links for each file
+                                                while ($row = $fileResult->fetch_assoc()) {
+                                                    $fileId = $row['id'];
+                                                    $filename = $row['filename'];
+                                                    // Generate download link
+                                                    echo "<a href='download.php?file_id=$fileId' style='display: inline-block; color: #007bff; text-decoration: none; margin-bottom: 5px; border: 1px solid #ccc; padding: 3px 8px; border-radius: 3px;'>$filename</a><br>";
+                                                }
+                                            } else {
+                                                echo "<p style='color: #888;'>No files found for download.</p>";
+                                            }
+                                            ?>
+
+
+
+
+
                                                 <td style="width: 25%;">
                                                     <div  class="dashboard-items"  style="padding:20px;margin:auto;width:95%;display: flex">
                                                         <div>

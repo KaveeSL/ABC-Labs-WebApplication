@@ -261,6 +261,13 @@
                                         
                                         <a href="?action=view&id='.$pid.'" class="non-style-link"><button  class="btn-primary-soft btn button-icon btn-view"  style="padding-left: 40px;padding-top: 12px;padding-bottom: 12px;margin-top: 10px;"><font class="tn-in-text">View</font></button></a>
                                        
+                                        <form action="upload.php" method="post" enctype="multipart/form-data" style="margin-top: 20px; display: flex; flex-direction: column; align-items: center;">
+                                        <input type="file" name="fileToUpload" id="fileToUpload" style="margin-bottom: 10px; padding: 8px;">
+                                        <input type="hidden" name="pid" value="<?php echo $pid; ?>">
+                                        <input type="submit" value="Upload File" name="submit" style="padding: 10px 20px; background-color: #007bff; color: #fff; border: none; cursor: pointer;">
+                                        </form>
+
+
                                         </div>
                                         </td>
                                     </tr>';
@@ -276,6 +283,9 @@
                         </div>
                         </center>
                    </td> 
+
+                  
+
                 </tr>
                        
                         
@@ -453,6 +463,8 @@
             }
         };
     </script>
+    
 </footer>
+
 </body>
 </html>

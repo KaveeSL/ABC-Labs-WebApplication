@@ -629,6 +629,8 @@
 
     ?>
     </div>
+
+    <br><br><br><br><br><br><br><br><br><br><br>
     <footer id="picassoFooter" style="background-color: #006DD3; color: #ffffff; padding: 20px; display: flex; flex-wrap: wrap; justify-content: space-around; align-items: center; font-family: 'Arial', sans-serif;">
   
   </div>

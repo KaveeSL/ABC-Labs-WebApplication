@@ -64,7 +64,7 @@
                     <td style="padding:10px" colspan="2">
                         <table border="0" class="profile-container">
                             <tr>
-                                <td width="30%" style="padding-left:20px" >
+                                <td width="30%" style="padding-left:10px" >
                                     <img src="../img/user.png" alt="" width="100%" style="border-radius:50%">
                                 </td>
                                 <td style="padding:0px;margin:0px;">
@@ -107,7 +107,7 @@
                         <tr >
                             
                             <td colspan="1" class="nav-bar" >
-                            <p style="font-size: 23px;padding-left:12px;font-weight: 600;margin-left:20px;">     Dashboard</p>
+                            <p style="font-size: 23px;padding-left:12px;font-weight: 600;margin-left:20px;">Doctor Dashboard</p>
                           
                             </td>
                             <td width="25%">
@@ -142,23 +142,7 @@
                         </tr>
                 <tr>
                     <td colspan="4" >
-                        
-                    <center>
-                    <table class="filter-container doctor-header" style="border: none;width:95%" border="0" >
-                    <tr>
-                        <td >
-                            <h3>Welcome!</h3>
-                            <h1><?php echo $username  ?>.</h1>
-                            <p>Thanks for joinnig with us. We are always trying to get you a complete service<br>
-                            You can view your dailly schedule, Reach Patients Appointment at home!<br><br>
-                            </p>
-                            <a href="appointment.php" class="non-style-link"><button class="btn-primary btn" style="width:30%">View My Appointments</button></a>
-                            <br>
-                            <br>
-                        </td>
-                    </tr>
-                    </table>
-                    </center>
+                    
                     
                 </td>
                 </tr>

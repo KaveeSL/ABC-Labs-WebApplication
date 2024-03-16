@@ -93,6 +93,13 @@
                         <a href="patient.php" class="non-style-link-menu"><div><p class="menu-text">Patients</p></a></div>
                     </td>
                 </tr>
+                <tr class="menu-row" >
+                <td class="menu-btn menu-icon-appoinment">
+                <a href="pdfgen.php" class="non-style-link-menu">
+    <div><p class="menu-text">Report GENERATE</p></div>
+</a>
+ </td>
+                </tr>
             </table>
         </div>
         <div class="dash-body" style="margin-top: 15px">
