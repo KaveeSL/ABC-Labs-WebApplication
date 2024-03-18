@@ -57,7 +57,7 @@
                                 </td>
                                 <td style="padding:0px;margin:0px;">
                                     <p class="profile-title">Administrator</p>
-                                    <p class="profile-subtitle">admin@edoc.com</p>
+                                    <p class="profile-subtitle">admin@abc.com</p>
                                 </td>
                             </tr>
                             <tr>
@@ -93,13 +93,7 @@
                         <a href="patient.php" class="non-style-link-menu"><div><p class="menu-text">Patients</p></a></div>
                     </td>
                 </tr>
-                <tr class="menu-row" >
-                <td class="menu-btn menu-icon-appoinment">
-                <a href="pdfgen.php" class="non-style-link-menu">
-    <div><p class="menu-text">Report GENERATE</p></div>
-</a>
- </td>
-                </tr>
+                
             </table>
         </div>
         <div class="dash-body" style="margin-top: 15px">
@@ -113,33 +107,28 @@
                                 
                             </td>
                             <td width="15%">
-                                <p style="font-size: 14px;color: rgb(119, 119, 119);padding: 0;margin: 0;text-align: right;">
-                                    Today's Date
-                                </p>
+                                
                                 <p class="heading-sub12" style="padding: 0;margin: 0;">
                                     <?php 
-                                date_default_timezone_set('Asia/Kolkata');
-        
-                                $today = date('Y-m-d');
-                                echo $today;
+                            
 
 
                                 $patientrow = $database->query("select  * from  patient;");
                                 $doctorrow = $database->query("select  * from  doctor;");
-                                $appointmentrow = $database->query("select  * from  appointment where appodate>='$today';");
-                                $schedulerow = $database->query("select  * from  schedule where scheduledate='$today';");
-
+                            
 
                                 ?>
                                 </p>
+
                             </td>
-                            <td width="10%">
-                                <button  class="btn-label"  style="display: flex;justify-content: center;align-items: center;"><img src="../img/calendar.svg" width="100%"></button>
-                            </td>
+                          
+                            
         
         
                         </tr>
+                        
                 <tr>
+                    
                     <td colspan="4">
                         
                         <center>
@@ -177,8 +166,8 @@
                                
                                 
                             </tr>
-                        </table>
-                    </center>
+                        </table></center>
+   
                     </td>
                 </tr>
 
@@ -191,13 +180,29 @@
                     </td>
 
                 </tr>
-                        </table>
-                        </center>
+
+                </table> 
+                <br><br>
+                <tr class="menu-row" >    
+                <a href="pdfgen.php" class="non-style-link-menu">
+                <div style="text-align: center;">
+    <p class="menu-text" style="padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; display: inline-block; cursor: pointer;">LAB REPORT GENERATOR</p>
+</div>
+
+                </a>
+                </td>
+                </tr>
+                </center>
+
+
                         </td>
                 </tr>
             </table>
         </div>
     </div>
+
+
+    
 
     <footer id="picassoFooter" style="background-color: #006DD3; color: #ffffff; padding: 20px; display: flex; flex-wrap: wrap; justify-content: space-around; align-items: center; font-family: 'Arial', sans-serif;">
   
