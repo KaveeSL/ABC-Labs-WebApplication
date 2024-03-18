@@ -16,78 +16,112 @@
     </style>
 </head>
 <body>
+
 <?php
 
-
+// Start session management
 session_start();
 
-$_SESSION["user"]="";
-$_SESSION["usertype"]="";
+// Include the Database class
+require_once("connection.php");
 
-// Set the new timezone
-date_default_timezone_set('Asia/Kolkata');
-$date = date('Y-m-d');
+// Define the SignUp class
+class SignUp {
+    // Private property to hold the database connection
+    private $database;
 
-$_SESSION["date"]=$date;
-
-
-//import database
-include("connection.php");
-
-
-
-
-
-if($_POST){
-
-    $result= $database->query("select * from webuser");
-
-    $fname=$_SESSION['personal']['fname'];
-    $lname=$_SESSION['personal']['lname'];
-    $name=$fname." ".$lname;
-    $address=$_SESSION['personal']['address'];
-    $nic=$_SESSION['personal']['nic'];
-    $dob=$_SESSION['personal']['dob'];
-    $email=$_POST['newemail'];
-    $tele=$_POST['tele'];
-    $newpassword=$_POST['newpassword'];
-    $cpassword=$_POST['cpassword'];
-    
-    if ($newpassword==$cpassword){
-        $sqlmain= "select * from webuser where email=?;";
-        $stmt = $database->prepare($sqlmain);
-        $stmt->bind_param("s",$email);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        if($result->num_rows==1){
-            $error='<label for="promter" class="form-label" style="color:rgb(255, 62, 62);text-align:center;">Already have an account for this Email address.</label>';
-        }else{
-            //TODO
-            $database->query("insert into patient(pemail,pname,ppassword, paddress, pnic,pdob,ptel) values('$email','$name','$newpassword','$address','$nic','$dob','$tele');");
-            $database->query("insert into webuser values('$email','p')");
-
-            //print_r("insert into patient values($pid,'$email','$fname','$lname','$newpassword','$address','$nic','$dob','$tele');");
-            $_SESSION["user"]=$email;
-            $_SESSION["usertype"]="p";
-            $_SESSION["username"]=$fname;
-
-            header('Location: patient/index.php');
-            $error='<label for="promter" class="form-label" style="color:rgb(255, 62, 62);text-align:center;"></label>';
-        }
-        
-    }else{
-        $error='<label for="promter" class="form-label" style="color:rgb(255, 62, 62);text-align:center;">Password Conformation Error! Reconform Password</label>';
+    // Constructor to initialize the SignUp object with a database connection
+    public function __construct($db) { // Constructor (Encapsulation)
+        $this->database = $db; // Dependency Injection (Dependency Injection)
     }
 
+    // Method to handle the sign-up process
+    public function signUpProcess() { // Method (Encapsulation)
+        // Initialize session variables
+        $_SESSION["user"] = ""; // Encapsulation
+        $_SESSION["usertype"] = ""; // Encapsulation
 
+        // Set timezone and store current date in session
+        date_default_timezone_set('Asia/Kolkata'); // Abstraction
+        $_SESSION["date"] = date('Y-m-d'); // Abstraction
 
-    
-}else{
-    //header('location: signup.php');
-    $error='<label for="promter" class="form-label"></label>';
+        // Initialize error message
+        $error = ''; // Encapsulation
+
+        // Check if the request method is POST
+        if ($_SERVER["REQUEST_METHOD"] === "POST") { // Abstraction
+            // Retrieve form data from session
+            $fname = $_SESSION['personal']['fname']; // Encapsulation
+            $lname = $_SESSION['personal']['lname']; // Encapsulation
+            $name = $fname . " " . $lname; // Encapsulation
+            $address = $_SESSION['personal']['address']; // Encapsulation
+            $nic = $_SESSION['personal']['nic']; // Encapsulation
+            $dob = $_SESSION['personal']['dob']; // Encapsulation
+            $email = $_POST['newemail']; // Encapsulation
+            $tele = $_POST['tele']; // Encapsulation
+            $newpassword = $_POST['newpassword']; // Encapsulation
+            $cpassword = $_POST['cpassword']; // Encapsulation
+
+            // Validate password confirmation
+            if ($newpassword == $cpassword) { // Abstraction
+                // Prepare and execute SQL query to check if email already exists
+                $sqlmain = "SELECT * FROM webuser WHERE email=?"; // Abstraction
+                $stmt = $this->database->prepare($sqlmain); // Encapsulation
+                $stmt->bind_param("s", $email); // Encapsulation
+                $stmt->execute(); // Encapsulation
+                $result = $stmt->get_result(); // Encapsulation
+
+                // If email exists, set error message
+                if ($result->num_rows == 1) { // Abstraction
+                    $error = '<label for="promter" class="form-label" style="color:rgb(255, 62, 62);text-align:center;">Already have an account for this Email address.</label>'; // Encapsulation
+                } else {
+                    // If email does not exist, insert user data into database
+                    $sqlInsertPatient = "INSERT INTO patient(pemail, pname, ppassword, paddress, pnic, pdob, ptel) VALUES (?, ?, ?, ?, ?, ?, ?)"; // Abstraction
+                    $stmtInsertPatient = $this->database->prepare($sqlInsertPatient); // Encapsulation
+                    $stmtInsertPatient->bind_param("sssssss", $email, $name, $newpassword, $address, $nic, $dob, $tele); // Encapsulation
+                    $stmtInsertPatient->execute(); // Encapsulation
+
+                    // Insert user data into webuser table
+                    $sqlInsertWebUser = "INSERT INTO webuser VALUES (?, 'p')"; // Abstraction
+                    $stmtInsertWebUser = $this->database->prepare($sqlInsertWebUser); // Encapsulation
+                    $stmtInsertWebUser->bind_param("s", $email); // Encapsulation
+                    $stmtInsertWebUser->execute(); // Encapsulation
+
+                    // Set session variables
+                    $_SESSION["user"] = $email; // Encapsulation
+                    $_SESSION["usertype"] = "p"; // Encapsulation
+                    $_SESSION["username"] = $fname; // Encapsulation
+
+                    // Redirect user to the index page
+                    header('Location: patient/index.php'); // Abstraction
+                    exit; // Abstraction
+                }
+            } else {
+                // Set error message for password confirmation error
+                $error = '<label for="promter" class="form-label" style="color:rgb(255, 62, 62);text-align:center;">Password Conformation Error! Reconform Password</label>'; // Encapsulation
+            }
+        } else {
+            // Set empty error message for non-POST requests
+            $error = '<label for="promter" class="form-label"></label>'; // Encapsulation
+        }
+
+        // Return the error message
+        return $error; // Encapsulation
+    }
 }
 
+// Create instance of Database class
+$database = new Database(); // Encapsulation
+
+// Create instance of SignUp class
+$signUp = new SignUp($database); // Encapsulation (Dependency Injection)
+
+// Call signUpProcess method to handle sign up process
+$error = $signUp->signUpProcess(); // Abstraction
+
 ?>
+
+
 
 
     <center>
@@ -174,7 +208,7 @@ if($_POST){
 
     </div>
 </center>
-
+<br><br><br><br>
 <footer id="picassoFooter" style="background-color: #006DD3; color: #ffffff; padding: 20px; display: flex; flex-wrap: wrap; justify-content: space-around; align-items: center; font-family: 'Arial', sans-serif;">
   
     </div>

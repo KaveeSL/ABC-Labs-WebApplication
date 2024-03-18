@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Contact</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css\footer.css">
+    <link rel="stylesheet" href="css\footer.css">
+  
+</head>
+
+<style>
+
+    form {
+        background-color: #c7e2fe;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        max-width: 400px;
+        margin: 0 auto;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="message"],
+    button[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        box-sizing: border-box;
+        background-color: white; /* Set background color to white */
+    }
+
+    button[type="submit"] {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+
+    button[type="submit"]:hover {
+        background-color: #0056b3;
+    }
+
+    label{
+        color: rgb(0, 0, 0);
+    }
+</style>
+</head>
+<body>
+<center>
+    <h1>After payment done Email_Us Immediately.</h1><br>
+    
+    <form action="https://formsubmit.co/abc.labspvtltd@gmail.com" method="POST"><br><br>
+
+        <input type="text" name="name" placeholder="Enter your Name on your card..." required >
+        <br><br>
+        <input type="email" name="email" placeholder="Enter your E-Mail..." required>
+        <br><br>
+        <input type="email" name="email" placeholder="Confirm your E-Mail..." required>
+        <br><br>
+        <input type="message" name="message" placeholder="Enter patient name..." required></b>
+    <br><br>
+        <button type="submit">Send</button>
+        
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_autoresponse" value="
+        -ABC-LABS RECEIPT-&#10;|  |
+        Your payment Successful:|  |
+        - [Report Total]--Rs.[2000]&#10;&#10;
+        
+        |  |Thank You For Your Purchase!&#10;
+        We will contact you soon.&#10;
+        Thanks, &#10;
+        ABC-LABS">
+        
+   </form>
+</center>
+
+<br><br><br><br><br><br>
+
+</body>
+</html>
