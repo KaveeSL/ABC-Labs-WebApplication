@@ -184,27 +184,75 @@
                                             </tr>
                                             <tr>
 
-                                            <h3 style="font-size: 1.5em; color: #333; margin-bottom: 10px;">Downloadable Report Files</h3>
+                                            <h3 style="font-size: 1.5em; color: #333; margin-bottom: 10px;">Downloadable Report Files<br><h5>Enter your E-Mail Here</h5></h3>
 
-                                            <?php
-                                            // Retrieve files associated with the patient from the database
-                                            $stmt = $database->prepare("SELECT id, filename FROM files WHERE pid = ?");
-                                            $stmt->bind_param("i", $userid);
-                                            $stmt->execute();
-                                            $fileResult = $stmt->get_result();
+                                            <!-- Search Form -->
+                                            <form action="" method="GET" style="margin-top: 20px; display: inline-block;">
+                                            <input type="email" name="email" placeholder="Enter Email Address" style="padding: 8px; border: 1px solid #ccc; border-radius: 0px; display: inline-block;">
+                                            <input type="submit" value="Search" style="padding: 8.6px 16.5px; background-color: #007bff; color: #fff; border: none; border-radius: 0px; cursor: pointer; display: inline-block;">
+                                        </form>
 
-                                            if ($fileResult && $fileResult->num_rows > 0) {
-                                                // Output download links for each file
-                                                while ($row = $fileResult->fetch_assoc()) {
-                                                    $fileId = $row['id'];
-                                                    $filename = $row['filename'];
-                                                    // Generate download link
-                                                    echo "<a href='download.php?file_id=$fileId' style='display: inline-block; color: #007bff; text-decoration: none; margin-bottom: 5px; border: 1px solid #ccc; padding: 3px 8px; border-radius: 3px;'>$filename</a><br>";
-                                                }
-                                            } else {
-                                                echo "<p style='color: #888;'>No files found for download.</p>";
-                                            }
-                                            ?>
+
+                                        <?php
+if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['email']) && !empty($_GET['email'])) {
+    // Retrieve files associated with the email from the database
+    $email = $_GET['email'];
+    $stmt = $database->prepare("SELECT id, filename FROM files WHERE email = ?");
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $fileResult = $stmt->get_result();
+
+    if ($fileResult && $fileResult->num_rows > 0) {
+        // Output download links for each file
+        echo "<h3>Click file to download ...</h3>";
+        while ($row = $fileResult->fetch_assoc()) {
+            $fileId = $row['id'];
+            $filename = $row['filename'];
+            // Generate download link
+            echo "<a href='download.php?file_id=$fileId'>$filename</a><br>";
+        }
+    } else {
+        echo "<p>No files found for the email address: $email</p>";
+    }
+} elseif ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['email']) && empty($_GET['email'])) {
+    echo "<p>Please enter an email address to search for files.</p>";
+}
+?>
+
+<!-- Download Script (download.php) -->
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['file_id'])) {
+    // Retrieve file path from the database based on file ID
+    $fileId = $_GET['file_id'];
+    $stmt = $database->prepare("SELECT filepath FROM files WHERE id = ?");
+    $stmt->bind_param("i", $fileId);
+    $stmt->execute();
+    $fileResult = $stmt->get_result();
+
+    if ($fileResult && $fileResult->num_rows > 0) {
+        $row = $fileResult->fetch_assoc();
+        $filepath = $row['filepath'];
+
+        // Force download the file
+        if (file_exists($filepath)) {
+            header('Content-Description: File Transfer');
+            header('Content-Type: application/octet-stream');
+            header('Content-Disposition: attachment; filename="' . basename($filepath) . '"');
+            header('Expires: 0');
+            header('Cache-Control: must-revalidate');
+            header('Pragma: public');
+            header('Content-Length: ' . filesize($filepath));
+            readfile($filepath);
+            exit;
+        } else {
+            echo "File not found.";
+        }
+    } else {
+        echo "File not found.";
+    }
+}
+?>
+
 
 
 

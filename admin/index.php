@@ -182,17 +182,32 @@
                 </tr>
 
                 </table> 
-                <br><br>
+                <br><br> <hr>
                 <tr class="menu-row" >    
                 <a href="pdfgen.php" class="non-style-link-menu">
                 <div style="text-align: center;">
     <p class="menu-text" style="padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; display: inline-block; cursor: pointer;">LAB REPORT GENERATOR</p>
 </div>
 
+
+
+
+
+
                 </a>
                 </td>
                 </tr>
-                </center>
+
+                <br><br> <hr>
+<div style="text-align: center;">
+    <h4>Report Uploading Section</h4>
+    <form action="upload.php" method="post" enctype="multipart/form-data" style="margin-top: 20px; display: flex; flex-direction: column; align-items: center;">
+        <input type="file" name="fileToUpload" id="fileToUpload" style="margin-bottom: 10px; padding: 8px; border: 1px solid #ccc; border-radius: 5px;">
+        <input type="email" name="email" id="email" placeholder="Enter Patient Email Address" style="margin-bottom: 10px; padding: 8px; border: 1px solid #ccc; border-radius: 5px;">
+        <input type="submit" value="Upload File" name="submit" style="padding: 10px 20px; background-color: #007bff; color: #fff; border: none; border-radius: 5px; cursor: pointer;">
+    </form>
+</div>
+<br> <hr> </center>
 
 
                         </td>
